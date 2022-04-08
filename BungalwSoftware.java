@@ -1,11 +1,10 @@
 /**
  *  VORLAGE GUI 
  *  ---------------------------------------------------------------------- 
- *  Autor: Peter Braunsch�del
- *  Erstellungs-Datum: 28.03.2022
+ *  Autor: Bockwurst2016
+ *  Erstellungs-Datum: 25.03.2022
  *  Version 1.1
- *  Datum der letzten �nderung: 31.03.2022
- *  �nderung: Kommentar hinzugef�gt
+ *  Datum der letzten Aenderung: 05.04.2022
  *  ----------------------------------------------------------------------
  */
 
