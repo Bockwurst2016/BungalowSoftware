@@ -5,7 +5,7 @@
  *  Autor: Bockwurst2016
  *  Erstellungs-Datum: 25.03.2022
  *  Version 1.2
- *  Datum der letzten Aenderung: 06.05.2022
+ *  Datum der letzten Aenderung: 02.05.2022
  *  ----------------------------------------------------------------------
  */
 
