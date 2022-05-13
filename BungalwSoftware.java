@@ -1,3 +1,14 @@
+
+/**
+ *  Reservierungssoftware 
+ *  ---------------------------------------------------------------------- 
+ *  Autor: Bockwurst2016
+ *  Erstellungs-Datum: 25.03.2022
+ *  Version 1.3
+ *  Datum der letzten Aenderung: 13.05.2022
+ *  ----------------------------------------------------------------------
+ */
+
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -9,8 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
-
 public class BungalwSoftware extends JFrame {
 	private JTextField textBungalowNr;
 	private JTextField textStartWoche;
@@ -18,7 +27,7 @@ public class BungalwSoftware extends JFrame {
 	private JTextField textAnzahlPersonen;
 	private JTextField textRueckmeldung;
 	private JTextArea textBuchungenAnzeigen;
-	boolean ausgebucht = false;
+	boolean ausgebucht = false, falscheEingabe = false;
 
 	/**
 	 * Launch the application.
@@ -45,13 +54,10 @@ public class BungalwSoftware extends JFrame {
 		setTitle("Reservirungen");
 
 		int[][] Buchungen = new int[11][4];
-		
 
 		setAutoRequestFocus(true);
 		setPreferredSize(new Dimension(800, 450));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		
 
 		JButton btnReservierungDurchfuehren = new JButton("Reservierung Durchf\u00FChren");
 		btnReservierungDurchfuehren.setBounds(64, 283, 200, 60);
@@ -59,44 +65,45 @@ public class BungalwSoftware extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnReservierungDurchfuehren) {
 
-					
-					
-							if (Buchungen[Integer.parseInt(textBungalowNr.getText())][1] != 0) {
-							 ausgebucht = true;	
-							}
-						
-					
-					if (ausgebucht == true ) {
+					if (Buchungen[Integer.parseInt(textBungalowNr.getText())][1] != 0) {
+						ausgebucht = true;
 						textBuchungenAnzeigen.setText("AUSGEBUCHT!!!!!");
-						
 					}
-					
-					if (ausgebucht == false) {
+					if (Integer.parseInt(textBungalowNr.getText()) <= 1
+							|| Integer.parseInt(textStartWoche.getText()) >= 10) {
+						falscheEingabe = true;
+						textBuchungenAnzeigen.setText("Falshe Eingabe bei Bungalow Nummer");
+					}
+
+					if (Integer.parseInt(textStartWoche.getText()) <= 1
+							|| Integer.parseInt(textStartWoche.getText()) >= 52) {
+						falscheEingabe = true;
+						textBuchungenAnzeigen.setText("Falshe Eingabe bei Startwoche");
+					}
+
+					if (Integer.parseInt(textEndWoche.getText()) <= Integer.parseInt(textStartWoche.getText())) {
+						falscheEingabe = true;
+						textBuchungenAnzeigen.setText("Falshe Eingabe bei Endwoche");
+					}
+
+					if (ausgebucht == false && falscheEingabe == false) {
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][0] = Integer.parseInt(textBungalowNr.getText());
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][1] = Integer.parseInt(textStartWoche.getText());
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][2] = Integer.parseInt(textEndWoche.getText());
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][3] = Integer.parseInt(textAnzahlPersonen.getText());
-					
-					}
-					
-					if (Integer.parseInt(textBungalowNr.getText())>11 || (Integer.parseInt(textBungalowNr.getText())<1)) 
-					{
-						textBuchungenAnzeigen.setText("Wählen Sie eine \n Bungalow Nr. von 1-10");
+
 					}
 					ausgebucht = false;
-					
+
 					textBungalowNr.setText(null);
 					textStartWoche.setText(null);
 					textEndWoche.setText(null);
 					textAnzahlPersonen.setText(null);
-					
-					
-					
+
 				}
 
 			}
 
-			
 		});
 		getContentPane().setLayout(null);
 		getContentPane().add(btnReservierungDurchfuehren);
