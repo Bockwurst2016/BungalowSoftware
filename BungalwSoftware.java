@@ -4,8 +4,8 @@
  *  ---------------------------------------------------------------------- 
  *  Autor: Bockwurst2016
  *  Erstellungs-Datum: 25.03.2022
- *  Version 1.2
- *  Datum der letzten Aenderung: 02.05.2022
+ *  Version 1.3
+ *  Datum der letzten Aenderung: 13.05.2022
  *  ----------------------------------------------------------------------
  */
 
@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 
 
-public class BungalwSoftwareFinal extends JFrame {
+public class BungalwSoftware extends JFrame {
 	private JTextField textBungalowNr;
 	private JTextField textStartWoche;
 	private JTextField textEndWoche;
@@ -39,7 +39,7 @@ public class BungalwSoftwareFinal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BungalwSoftwareFinal frame = new BungalwSoftwareFinal();
+					BungalwSoftware frame = new BungalwSoftware();
 					frame.setVisible(true);
 					frame.pack();
 				} catch (Exception e) {
@@ -52,7 +52,7 @@ public class BungalwSoftwareFinal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BungalwSoftwareFinal() {
+	public BungalwSoftware() {
 		setTitle("Reservirungen");
 
 		int[][] Buchungen = new int[11][4];
@@ -70,6 +70,18 @@ public class BungalwSoftwareFinal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == btnReservierungDurchfuehren) {
 
+					
+					
+							if (Buchungen[Integer.parseInt(textBungalowNr.getText())][1] != 0) {
+							 ausgebucht = true;	
+							}
+						
+					
+					if (ausgebucht == true ) {
+						textBuchungenAnzeigen.setText("AUSGEBUCHT!!!!!");
+						
+					}
+					
 					if (ausgebucht == false) {
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][0] = Integer.parseInt(textBungalowNr.getText());
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][1] = Integer.parseInt(textStartWoche.getText());
@@ -77,22 +89,14 @@ public class BungalwSoftwareFinal extends JFrame {
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][3] = Integer.parseInt(textAnzahlPersonen.getText());
 					
 					}
+					ausgebucht = false;
 					
 					textBungalowNr.setText(null);
 					textStartWoche.setText(null);
 					textEndWoche.setText(null);
 					textAnzahlPersonen.setText(null);
 					
-					for (int i = 1; i < Buchungen.length; i++) {
-						for (int j = 1; j < Buchungen.length; j++) {
-							if (Buchungen[i][0] == Buchungen[j][Integer.parseInt(textBungalowNr.getText())]) {
-							 ausgebucht = true;	
-							}
-						}
-					}
-					if (ausgebucht == true ) {
-						textBuchungenAnzeigen.setText("AUSGEBUCHT!!!!!");
-					}
+					
 					
 				}
 
