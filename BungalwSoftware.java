@@ -1,14 +1,3 @@
-
-/**
- *  Reservierungssoftware 
- *  ---------------------------------------------------------------------- 
- *  Autor: Bockwurst2016
- *  Erstellungs-Datum: 25.03.2022
- *  Version 1.3
- *  Datum der letzten Aenderung: 13.05.2022
- *  ----------------------------------------------------------------------
- */
-
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -88,6 +77,11 @@ public class BungalwSoftware extends JFrame {
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][2] = Integer.parseInt(textEndWoche.getText());
 						Buchungen[Integer.parseInt(textBungalowNr.getText())][3] = Integer.parseInt(textAnzahlPersonen.getText());
 					
+					}
+					
+					if (Integer.parseInt(textBungalowNr.getText())>11 || (Integer.parseInt(textBungalowNr.getText())<1)) 
+					{
+						textBuchungenAnzeigen.setText("Wählen Sie eine \n Bungalow Nr. von 1-10");
 					}
 					ausgebucht = false;
 					
